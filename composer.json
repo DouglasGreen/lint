@@ -1,0 +1,20 @@
+{
+    "name": "Lint",
+    "description": "Scripts for checking source code",
+    "type": "project",
+    "license": "GNU GPL 3",
+    "autoload": {
+        "psr-4": {
+            "Lint\\": "src/"
+        }
+    },
+    "require": {
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
+        "phpmd/phpmd": "*",
+        "phpmyadmin/sql-parser": "*",
+        "sabberworm/php-css-parser": "*",
+        "sebastian/phpcpd": "*",
+        "squizlabs/php_codesniffer": "*",
+        "wimg/php-compatibility": "*"
+    }
+}
