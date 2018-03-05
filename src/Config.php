@@ -32,7 +32,7 @@ class Config
     {
         $path = realpath(__DIR__ . '/../vendor/bin');
         if (!$path) {
-            throw new Exception('Path to binary files not found. Did you run "composer install"?');
+            throw new \Exception('Path to binary files not found. Did you run "composer install"?');
         }
         return $path;
     }
@@ -48,7 +48,7 @@ class Config
     {
         $path = realpath(__DIR__ . '/../data');
         if (!$path) {
-            throw new Exception('Data path not found.');
+            throw new \Exception('Data path not found.');
         }
         return $path;
     }
@@ -64,7 +64,7 @@ class Config
     {
         $path = realpath($this->sourcePath);
         if (!$path) {
-            throw new Exception('Source path not found.');
+            throw new \Exception('Source path not found.');
         }
         return $path;
     }

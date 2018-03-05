@@ -265,7 +265,7 @@ class PhpText
                     $words[] = $match[0];
                 }
                 if (preg_match('/^[A-Z]+[a-z]*/', $part, $match)) {
-                    $part = preg_replace('/^[A-Z]+[a-z]+/', '', $part);
+                    $part = preg_replace('/^[A-Z]+[a-z]*/', '', $part);
                     $words[] = $match[0];
                 }
             }
