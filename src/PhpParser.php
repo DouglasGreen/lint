@@ -173,6 +173,38 @@ class PhpParser extends Parser
     }
 
     /**
+     * Get property declaration lines.
+     *
+     * @return array
+     */
+    public function getPropertyLines()
+    {
+        $lines = [];
+        foreach ($this->lines as $index => $line) {
+            if (PhpText::isPropertyLine($line)) {
+                $lines[$index] = $line;
+            }
+        }
+        return $lines;
+    }
+
+    /**
+     * Get the names of properties.
+     *
+     * @return array
+     */
+    public function getPropertyNames()
+    {
+        $lines = $this->getPropertyLines();
+        $names = [];
+        foreach ($lines as $line) {
+            preg_match('/\$(\w+)/', $line, $match);
+            $names[] = $match[1];
+        }
+        return $names;
+    }
+
+    /**
      * Get source code without comments.
      *
      * @return string

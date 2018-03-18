@@ -5,7 +5,7 @@ namespace Lint;
 class PhpLocalVariableChecker extends PhpFileChecker
 {
     /** @var int Minimum variable name length */
-    const MIN_LEN = 4;
+    const MIN_LEN = 3;
 
     /** @var int Maximum variable name length */
     const MAX_LEN = 20;
@@ -14,6 +14,7 @@ class PhpLocalVariableChecker extends PhpFileChecker
     public function runCheck()
     {
         $functions = $this->parser->getFunctions();
+        $propertyNames = $this->parser->getPropertyNames();
         foreach ($functions as $index => $funcLines) {
             $varNames = [];
             $funcName = null;
@@ -42,7 +43,8 @@ class PhpLocalVariableChecker extends PhpFileChecker
                 $isAmbiguous = count(array_keys($varNames, $short)) > 1;
                 $tooShort = strlen($short) < self::MIN_LEN;
                 $isKeyword = PhpText::isKeyword($short);
-                if (!$isUsed && !$isAmbiguous && !$tooShort && !$isKeyword) {
+                $isPropertyName = in_array($varName, $propertyNames);
+                if (!$isUsed && !$isAmbiguous && !$tooShort && !$isKeyword && !$isPropertyName) {
                     $message = sprintf(
                         'Can shorten $%s to $%s in function %s()',
                         $varName,
