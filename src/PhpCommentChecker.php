@@ -12,10 +12,12 @@ class PhpCommentChecker extends PhpFileChecker
         $lastComment = null;
         $codeLineCount = 0;
         foreach ($allLines as $index => $line) {
-            if (preg_match('~^\\s*/[/*]~', $line)) {
+            $hasComment = preg_match('~^\\s*/[/*]~', $line);
+            $hasDecision = preg_match('/^\s*(if|for|foreach|switch|while)\s*\(/i', $line);
+            if ($hasComment && $hasDecision) {
                 if ($codeLineCount > 10) {
                     $expr = sprintf('lines %d-%d', $lastComment + 1, $index + 1);
-                    $this->printError('Break up long blocks of code with comments', $expr);
+                    $this->printError('Break up long blocks of code with comments at decision points', $expr);
                 }
                 $codeLineCount = 0;
                 $lastComment = $index;

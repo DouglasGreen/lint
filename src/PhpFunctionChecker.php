@@ -18,6 +18,7 @@ class PhpFunctionChecker extends PhpFileChecker
             $paramTags = [];
             $isAbstract = false;
             $isStatic = false;
+            $hasParent = false;
             $hasThis = false;
             $returnType = null;
             foreach ($funcLines as $line) {
@@ -49,6 +50,9 @@ class PhpFunctionChecker extends PhpFileChecker
                 }
                 if (preg_match('/\\$this->/i', $line)) {
                     $hasThis = true;
+                }
+                if (preg_match('/\bparent::/i', $line)) {
+                    $hasParent = true;
                 }
             }
             $funcDesc = $funcName . '()';
@@ -143,9 +147,11 @@ class PhpFunctionChecker extends PhpFileChecker
                     $this->printError($message, $funcDesc, $index + 1);
                 }
             }
-            if (!$isStatic && !$hasThis) {
+
+            // Check if function can be made static.
+            if (!$isStatic && !$hasThis && !$hasParent) {
                 $this->printError(
-                    'Function without $this reference can be made static',
+                    'Function without reference to $this or parent can be made static',
                     $funcDesc,
                     $index + 1
                 );

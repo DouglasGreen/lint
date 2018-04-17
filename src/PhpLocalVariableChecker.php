@@ -44,7 +44,9 @@ class PhpLocalVariableChecker extends PhpFileChecker
                 $tooShort = strlen($short) < self::MIN_LEN;
                 $isKeyword = PhpText::isKeyword($short);
                 $isPropertyName = in_array($varName, $propertyNames);
-                if (!$isUsed && !$isAmbiguous && !$tooShort && !$isKeyword && !$isPropertyName) {
+                $isGlobal = preg_match('/^_[A-Z]+|GLOBALS/', $varName);
+                if (!$isUsed && !$isAmbiguous && !$tooShort && !$isKeyword && !$isPropertyName &&
+                    !$isGlobal) {
                     $message = sprintf(
                         'Can shorten $%s to $%s in function %s()',
                         $varName,
