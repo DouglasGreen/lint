@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check function argument count. */
@@ -31,11 +32,7 @@ class PhpArgumentCountChecker extends PhpFileChecker
                     }
                 }
                 if ($argCount > 4) {
-                    $message = sprintf(
-                        'Limit functions to 4 arguments or less (%s has %d arguments)',
-                        $funcToken[1],
-                        $argCount
-                    );
+                    $message = sprintf('Limit functions to 4 arguments or less (%s has %d arguments)', $funcToken[1], $argCount);
                     $this->printTokenError($message, $funcToken);
                 }
             }

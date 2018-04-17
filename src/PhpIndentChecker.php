@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check indentation of blocks and arrays. */

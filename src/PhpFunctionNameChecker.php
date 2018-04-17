@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check function name. */
@@ -51,11 +52,7 @@ class PhpFunctionNameChecker extends PhpFileChecker
     {
         if (array_intersect($words, $badWords)) {
             $expr = implode('/', $badWords);
-            $this->printError(
-                'Avoid the words ' . $expr . ' in function names',
-                $func,
-                $lineNum
-            );
+            $this->printError('Avoid the words ' . $expr . ' in function names', $func, $lineNum);
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check with PHPMD. */
@@ -8,11 +9,7 @@ class PhpMessChecker extends PhpFileChecker
     public function runCheck()
     {
         $phpmd = $this->config->getBinaryPath() . '/phpmd';
-        $command = sprintf(
-            '%s %s text cleancode,codesize,controversial,design,naming,unusedcode',
-            $phpmd,
-            escapeshellarg($this->config->getSourcePath())
-        );
+        $command = sprintf('%s %s text cleancode,codesize,controversial,design,naming,unusedcode', $phpmd, escapeshellarg($this->config->getSourcePath()));
         $output = [];
         exec($command, $output);
         foreach ($output as $line) {

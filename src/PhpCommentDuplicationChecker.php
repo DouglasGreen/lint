@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check for duplicate comments. */

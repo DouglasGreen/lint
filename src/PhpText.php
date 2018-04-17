@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Static text functions. */
@@ -146,10 +147,7 @@ class PhpText
      */
     public static function isClassLine($line)
     {
-        $isClass = (bool) preg_match(
-            '/^\\s*(abstract)?\\s*(class|interface|trait)\\s+\\w+/i',
-            $line
-        );
+        $isClass = (bool) preg_match('/^\\s*(abstract)?\\s*(class|interface|trait)\\s+\\w+/i', $line);
         return $isClass;
     }
 
@@ -162,10 +160,7 @@ class PhpText
      */
     public static function isConstLine($line)
     {
-        $isConst = (bool) preg_match(
-            '/^\\s*((public|protected|private)\\s+)?const\\s+\\w+/i',
-            $line
-        );
+        $isConst = (bool) preg_match('/^\\s*((public|protected|private)\\s+)?const\\s+\\w+/i', $line);
         return $isConst;
     }
 
@@ -178,10 +173,7 @@ class PhpText
      */
     public static function isFunctionLine($line)
     {
-        $isFunc = (bool) preg_match(
-            '/^\\s*((public|protected|private|static|abstract)\\s+)*function\\s+\\w+/i',
-            $line
-        );
+        $isFunc = (bool) preg_match('/^\\s*((public|protected|private|static|abstract)\\s+)*function\\s+\\w+/i', $line);
         return $isFunc;
     }
 
@@ -225,10 +217,7 @@ class PhpText
      */
     public static function isPropertyLine($line)
     {
-        $isProperty = (bool) preg_match(
-            '/^\\s*((public|protected|private|static|var)\\s+)+\\$\\w+/i',
-            $line
-        );
+        $isProperty = (bool) preg_match('/^\\s*((public|protected|private|static|var)\\s+)+\\$\\w+/i', $line);
         return $isProperty;
     }
 

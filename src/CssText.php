@@ -1,16 +1,17 @@
 <?php
+
 namespace Lint;
 
 /** Static text functions. */
 class CssText
 {
     /**
-    * Is this identifier camel case?
-    *
-    * @param string $ident
-    *
-    * @return bool
-    */
+     * Is this identifier camel case?
+     *
+     * @param string $ident
+     *
+     * @return bool
+     */
     public static function isCamelCase($ident)
     {
         if (preg_match('/[_-]|[A-Z]{2,}|^[A-Z]/', $ident)) {

@@ -8,7 +8,7 @@ $source = file_get_contents($lastArg);
 $tokens = token_get_all($source);
 foreach ($tokens as $token) {
     if (is_array($token)) {
-        $text = preg_replace('/\s+/', ' ', trim($token[1]));
+        $text = preg_replace('/\\s+/', ' ', trim($token[1]));
         if ($token[0] == T_WHITESPACE && !$includeWhitespace) {
             continue;
         }

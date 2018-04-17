@@ -4,11 +4,10 @@
  * Check that the CSS ID and class names in a file are used in a directory.
  */
 if ($argc != 3) {
-    die("Usage: $argv[0] CSS_FILE HTML_DIR\n");
+    die("Usage: {$argv[0]} CSS_FILE HTML_DIR\n");
 }
 list(, $cssFile, $htmlDir) = $argv;
 $cssLines = file($cssFile);
-
 $bootstrapClasses = [
     'active',
     'affix',
@@ -56,11 +55,11 @@ $bootstrapClasses = [
     'checkbox-inline',
     'clearfix',
     'close',
-    'col-\w+-\w+',
+    'col-\\w+-\\w+',
     'collapse',
-    'col-\w+-offset-\w+',
-    'col-\w+-pull-\w+',
-    'col-\w+-push-\w+',
+    'col-\\w+-offset-\\w+',
+    'col-\\w+-pull-\\w+',
+    'col-\\w+-push-\\w+',
     'container',
     'container-fluid',
     'control-label',
@@ -93,7 +92,7 @@ $bootstrapClasses = [
     'has-warning',
     'help-block',
     'hidden',
-    'hidden-\w+',
+    'hidden-\\w+',
     'hidden-print',
     'hide',
     'icon-bar',
@@ -231,7 +230,7 @@ $bootstrapClasses = [
     'text-warning',
     'thumbnail',
     'tooltip',
-    'visible-\w+',
+    'visible-\\w+',
     'visible-print-block',
     'visible-print-inline',
     'visible-print-inline-block',
@@ -244,7 +243,7 @@ $bootstrapClasses = [
 // Load classes and IDs from file.
 $defs = [];
 foreach ($cssLines as $line) {
-    if (preg_match('/^.*{/', $line) && preg_match_all('/([#.])([\w-]+)/', $line, $matches)) {
+    if (preg_match('/^.*{/', $line) && preg_match_all('/([#.])([\\w-]+)/', $line, $matches)) {
         foreach ($matches[1] as $i => $type) {
             $name = $matches[2][$i];
             if ($type == '#') {
@@ -262,15 +261,15 @@ $cmd = sprintf('find %s -type f -print', escapeshellarg($htmlDir));
 exec($cmd, $files);
 $uses = [];
 foreach ($files as $file) {
-    if (!preg_match('/\.(php|\w*htm\w*)$/', $file)) {
+    if (!preg_match('/\\.(php|\\w*htm\\w*)$/', $file)) {
         continue;
     }
     $codeLines = file($file);
     foreach ($codeLines as $line) {
-        if (preg_match_all('/\b(class|id)\s*=\s*([\'"])([\w\s-]*?)\2/i', $line, $matches)) {
+        if (preg_match_all('/\\b(class|id)\\s*=\\s*([\'"])([\\w\\s-]*?)\\2/i', $line, $matches)) {
             foreach ($matches[1] as $i => $type) {
                 $type = strtolower($type);
-                preg_match_all('/[\w-]+/', $matches[3][$i], $nameMatches);
+                preg_match_all('/[\\w-]+/', $matches[3][$i], $nameMatches);
                 foreach ($nameMatches[0] as $name) {
                     $uses[$type][$name] = isset($uses[$type][$name]) ? $uses[$type][$name] + 1 : 1;
                 }

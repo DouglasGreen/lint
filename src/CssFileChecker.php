@@ -1,15 +1,16 @@
 <?php
+
 namespace Lint;
 
 /** Check a file. */
 class CssFileChecker extends Checker
 {
     /**
-    * Set the program configuration.
-    *
-    * @param Config $config
-    * @param CssParser|null $parser
-    */
+     * Set the program configuration.
+     *
+     * @param Config $config
+     * @param CssParser|null $parser
+     */
     public function __construct(Config $config, CssParser $parser = null)
     {
         $this->config = $config;

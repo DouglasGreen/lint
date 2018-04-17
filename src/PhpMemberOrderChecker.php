@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check member order. */
@@ -38,11 +39,7 @@ class PhpMemberOrderChecker extends PhpFileChecker
                             $line = $this->lines[$type][$access][$stat][$name];
                             $lineNum = $this->parser->getLineNumber($line);
                             $ident = "{$type} {$access} {$stat} {$name}";
-                            $this->printError(
-                                'Out of properly grouped alphabetical order',
-                                $ident,
-                                $lineNum
-                            );
+                            $this->printError('Out of properly grouped alphabetical order', $ident, $lineNum);
                         }
                         $previous = $current;
                     }

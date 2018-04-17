@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check nesting of brackets, braces, and parentheses. */

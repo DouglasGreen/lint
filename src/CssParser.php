@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Handling parsing of CSS. */

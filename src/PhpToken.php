@@ -1,16 +1,17 @@
 <?php
+
 namespace Lint;
 
 /** Static text functions. */
 class PhpToken
 {
     /**
-    * Is this a comment token?
-    *
-    * @param array|string $token
-    *
-    * @return bool
-    */
+     * Is this a comment token?
+     *
+     * @param array|string $token
+     *
+     * @return bool
+     */
     public static function isComment($token)
     {
         if (is_array($token)) {

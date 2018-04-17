@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check variables. */
@@ -32,8 +33,7 @@ class PhpVariableChecker extends PhpFileChecker
                 // Then find uses on the first line after declaration.
                 if (preg_match_all('/\\$(\\w+)/', $line, $matches)) {
                     foreach ($matches[1] as $name) {
-                        $isFirstUse = isset($declares[$name]) && $index > $declares[$name] &&
-                            !isset($uses[$name]);
+                        $isFirstUse = isset($declares[$name]) && $index > $declares[$name] && !isset($uses[$name]);
                         if ($isFirstUse) {
                             $uses[$name] = $index;
                         }

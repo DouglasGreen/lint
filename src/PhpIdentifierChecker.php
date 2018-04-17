@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check identifiers. */
@@ -40,11 +41,7 @@ class PhpIdentifierChecker extends PhpFileChecker
                 $name = $match[2];
                 $names[$name] = $type;
                 if (strlen($name) < self::MIN_LEN || strlen($name) > self::MAX_LEN) {
-                    $message = sprintf(
-                        'Class names should be between %d and %d characters',
-                        self::MIN_LEN,
-                        self::MAX_LEN
-                    );
+                    $message = sprintf('Class names should be between %d and %d characters', self::MIN_LEN, self::MAX_LEN);
                     $this->printError($message, $line, $index + 1);
                 }
             }
@@ -57,11 +54,7 @@ class PhpIdentifierChecker extends PhpFileChecker
                 $name = $match[1];
                 $names[$name] = 'function';
                 if (strlen($name) < self::MIN_LEN || strlen($name) > self::MAX_LEN) {
-                    $message = sprintf(
-                        'Function names should be between %d and %d characters',
-                        self::MIN_LEN,
-                        self::MAX_LEN
-                    );
+                    $message = sprintf('Function names should be between %d and %d characters', self::MIN_LEN, self::MAX_LEN);
                     $this->printError($message, $line, $index + 1);
                 }
             }

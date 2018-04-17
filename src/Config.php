@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Manage program configuration. */

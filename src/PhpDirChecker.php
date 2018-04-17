@@ -1,19 +1,17 @@
 <?php
+
 namespace Lint;
 
 /** Check directory globally and the files in it individually. */
 class PhpDirChecker extends PhpChecker
 {
     /**
-    * Check all the things.
-    */
+     * Check all the things.
+     */
     public function runAllChecks()
     {
         $files = [];
-        exec(
-            'find ' . escapeshellarg($this->config->getSourcePath()) . ' -name "*.php" -print',
-            $files
-        );
+        exec('find ' . escapeshellarg($this->config->getSourcePath()) . ' -name "*.php" -print', $files);
         $codeNames = [];
         $codeRefs = [];
         sort($files);

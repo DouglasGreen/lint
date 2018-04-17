@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check that functions are in classes. */

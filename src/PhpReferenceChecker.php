@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check php case matching between definition and reference. */

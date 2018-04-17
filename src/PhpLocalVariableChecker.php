@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check local variables. */
@@ -32,11 +33,7 @@ class PhpLocalVariableChecker extends PhpFileChecker
             }
             foreach ($varNames as $varName => $short) {
                 if (strlen($varName) < self::MIN_LEN || strlen($varName) > self::MAX_LEN) {
-                    $message = sprintf(
-                        'Variable names should be between %d and %d characters',
-                        self::MIN_LEN,
-                        self::MAX_LEN
-                    );
+                    $message = sprintf('Variable names should be between %d and %d characters', self::MIN_LEN, self::MAX_LEN);
                     $this->printError($message, $varName, $index + 1);
                 }
                 $isUsed = isset($varNames[$short]);
@@ -45,14 +42,8 @@ class PhpLocalVariableChecker extends PhpFileChecker
                 $isKeyword = PhpText::isKeyword($short);
                 $isPropertyName = in_array($varName, $propertyNames);
                 $isGlobal = preg_match('/^_[A-Z]+|GLOBALS/', $varName);
-                if (!$isUsed && !$isAmbiguous && !$tooShort && !$isKeyword && !$isPropertyName &&
-                    !$isGlobal) {
-                    $message = sprintf(
-                        'Can shorten $%s to $%s in function %s()',
-                        $varName,
-                        $short,
-                        $funcName
-                    );
+                if (!$isUsed && !$isAmbiguous && !$tooShort && !$isKeyword && !$isPropertyName && !$isGlobal) {
+                    $message = sprintf('Can shorten $%s to $%s in function %s()', $varName, $short, $funcName);
                     $this->printError($message, '', $index + 1);
                 }
             }

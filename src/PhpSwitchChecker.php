@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check switch for break */

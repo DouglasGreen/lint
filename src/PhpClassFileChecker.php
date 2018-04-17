@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check class file name. */

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check functions. */
@@ -51,7 +52,7 @@ class PhpFunctionChecker extends PhpFileChecker
                 if (preg_match('/\\$this->/i', $line)) {
                     $hasThis = true;
                 }
-                if (preg_match('/\bparent::/i', $line)) {
+                if (preg_match('/\\bparent::/i', $line)) {
                     $hasParent = true;
                 }
             }
@@ -59,11 +60,7 @@ class PhpFunctionChecker extends PhpFileChecker
 
             // Check function name.
             if (preg_match('/^(bool|boolean)\\b/i', $returnType) && !PhpText::isBoolean($funcName)) {
-                $this->printError(
-                    'Boolean function names should start with "is" or "has"',
-                    $funcDesc,
-                    $index + 1
-                );
+                $this->printError('Boolean function names should start with "is" or "has"', $funcDesc, $index + 1);
             }
             $commentWord = '';
             foreach ($funcLines as $line) {
@@ -74,11 +71,7 @@ class PhpFunctionChecker extends PhpFileChecker
             }
             if ($commentWord && !isset($verbs[strtolower($commentWord)])) {
                 $desc = $funcDesc . ' starts with ' . $commentWord;
-                $this->printError(
-                    'Function comments should start with imperative verbs',
-                    $desc,
-                    $index + 1
-                );
+                $this->printError('Function comments should start with imperative verbs', $desc, $index + 1);
             }
             $source = implode("\n", $funcLines);
             $params = [];
@@ -93,11 +86,7 @@ class PhpFunctionChecker extends PhpFileChecker
                             $paramType = $paramTags[$param];
                             $typeHint = $paramType . ' $' . $param;
                             if ($hasNullDefault && !preg_match('/\\|null\\b/', $paramType)) {
-                                $this->printError(
-                                    'Param tag should have null option',
-                                    $typeHint,
-                                    $index + 1
-                                );
+                                $this->printError('Param tag should have null option', $typeHint, $index + 1);
                             }
 
                             // Don't check type hints for complex or mixed types.
@@ -129,11 +118,7 @@ class PhpFunctionChecker extends PhpFileChecker
                 '__destruct'
             ];
             if ($throwsException && in_array($funcName, $constructors)) {
-                $this->printError(
-                    'Avoid throwing exceptions in constructors and destructors',
-                    $funcDesc,
-                    $index + 1
-                );
+                $this->printError('Avoid throwing exceptions in constructors and destructors', $funcDesc, $index + 1);
             }
             foreach (array_keys($paramTags) as $tag) {
                 if (!in_array($tag, $params)) {
@@ -150,11 +135,7 @@ class PhpFunctionChecker extends PhpFileChecker
 
             // Check if function can be made static.
             if (!$isStatic && !$hasThis && !$hasParent) {
-                $this->printError(
-                    'Function without reference to $this or parent can be made static',
-                    $funcDesc,
-                    $index + 1
-                );
+                $this->printError('Function without reference to $this or parent can be made static', $funcDesc, $index + 1);
             }
         }
     }

@@ -1,12 +1,13 @@
 <?php
+
 namespace Lint;
 
 /** Check directory globally and the files in it individually. */
 class CssDirChecker extends Checker
 {
     /**
-    * Check all the things.
-    */
+     * Check all the things.
+     */
     public function runAllChecks()
     {
         $files = [];

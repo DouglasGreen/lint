@@ -1,14 +1,15 @@
 <?php
+
 namespace Lint;
 
 /** Check selectors. */
 class CssMediaQueryChecker extends CssFileChecker
 {
     /**
-    * @see https://medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
-    *
-    * @var array Recommended media minimum breakpoints
-    */
+     * @see https://medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
+     *
+     * @var array Recommended media minimum breakpoints
+     */
     protected $minBreakpoints = [
         600,
         900,
@@ -42,11 +43,7 @@ class CssMediaQueryChecker extends CssFileChecker
                                 $width = null;
                             }
                             if (!in_array($width, $breakpoints)) {
-                                $message = sprintf(
-                                    'Use recommended media breakpoints for %s-width of %s',
-                                    $breakDesc,
-                                    implode('/', $breakpoints) . 'px'
-                                );
+                                $message = sprintf('Use recommended media breakpoints for %s-width of %s', $breakDesc, implode('/', $breakpoints) . 'px');
                                 $this->printError($message, $atRuleArgs, $lineNum);
                             }
                         }

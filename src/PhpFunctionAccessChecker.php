@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check that function access is specified. */

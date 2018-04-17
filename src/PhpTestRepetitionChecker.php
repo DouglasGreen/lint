@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check repetition of test conditions. */
@@ -19,8 +20,7 @@ class PhpTestRepetitionChecker extends PhpFileChecker
         }
         foreach ($counts as $condition => $count) {
             if ($count >= 3) {
-                $message = 'Refactor repeated conditionals into functions (' . $count .
-                ' repetitions)';
+                $message = 'Refactor repeated conditionals into functions (' . $count . ' repetitions)';
                 $this->printError($message, $condition);
             }
         }

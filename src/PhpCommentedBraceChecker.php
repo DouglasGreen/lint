@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Check end braces for comments. */
@@ -20,11 +21,7 @@ class PhpCommentedBraceChecker extends PhpFileChecker
                         continue;
                     }
                     if (PhpToken::isComment($token)) {
-                        $this->printError(
-                            'Don\'t put comments after ending braces',
-                            $token[1],
-                            $token[2]
-                        );
+                        $this->printError('Don\'t put comments after ending braces', $token[1], $token[2]);
                     }
                     break;
                 }

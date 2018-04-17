@@ -1,4 +1,5 @@
 <?php
+
 namespace Lint;
 
 /** Handling parsing of PHP. */
@@ -198,7 +199,7 @@ class PhpParser extends Parser
         $lines = $this->getPropertyLines();
         $names = [];
         foreach ($lines as $line) {
-            preg_match('/\$(\w+)/', $line, $match);
+            preg_match('/\\$(\\w+)/', $line, $match);
             $names[] = $match[1];
         }
         return $names;
